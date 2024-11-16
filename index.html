@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <title>Library Project</title>
-        <script src="index.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -23,9 +22,9 @@
                     <option value="read">Read</option>
                     <option value="unread">Unread</option>
                 </select>
-                <button type="submit">Add Book</button>
+                <button id="closeBtn" type="submit">Add Book</button>
             </form>
-            <button id="closeBtn">Close</button>
+            <button id="cancelBtn">Cancel</button>
         </dialog>
         <div class="title">
         <h1>Library Project</h1>
@@ -35,5 +34,6 @@
             <div class="book" id="book"></div>
         </div>
         <button id="dialogBtn">Add a Book</button>
+        <script src="./index.js"></script>
     </body>
 </html>
