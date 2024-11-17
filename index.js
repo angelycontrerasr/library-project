@@ -76,8 +76,8 @@ function renderBooks() {
         // Add click event listener to change the read status
         changeRead.addEventListener("click", (event) => {
             const bookIndex = event.target.getAttribute("data-index"); // Retrieve the index
-            const newReadStatus = !myLibrary[bookIndex].read; // Toggle the read status
-            myLibrary[bookIndex].read = newReadStatus; // Update the read status
+             // Toggle the read status
+            myLibrary[bookIndex].read = !myLibrary[bookIndex].read; // Update the read status
             renderBooks(); // Re-render the library
         });
         // Create the remove button
