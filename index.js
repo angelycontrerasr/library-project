@@ -51,7 +51,7 @@ function renderBooks() {
     console.log("Rendering books..."); // Debugging: Confirm renderBooks is called
     bookList.innerHTML = ""; // Clear the book list
 
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book, index) => {
         console.log("Adding book:", book.title); // Debugging: Confirm each book
         const bookDiv = document.createElement("div");
         bookDiv.className = "book";
@@ -68,10 +68,38 @@ function renderBooks() {
         const read = document.createElement("p");
         read.innerText = `Read: ${book.read ? "Yes" : "No"}`;
 
+        const changeRead = document.createElement("button");
+        changeRead.innerText = "Change Read";
+        changeRead.className = "change-read-button";
+        changeRead.setAttribute("data-index", index.toString());
+
+        // Add click event listener to change the read status
+        changeRead.addEventListener("click", (event) => {
+            const bookIndex = event.target.getAttribute("data-index"); // Retrieve the index
+            const newReadStatus = !myLibrary[bookIndex].read; // Toggle the read status
+            myLibrary[bookIndex].read = newReadStatus; // Update the read status
+            renderBooks(); // Re-render the library
+        });
+        // Create the remove button
+        const removeButton = document.createElement("button");
+        removeButton.innerText = "Remove";
+        removeButton.className = "remove-button";
+        removeButton.setAttribute("data-index", index.toString());
+
+        // Add click event listener to remove the book
+        removeButton.addEventListener("click", (event) => {
+            const bookIndex = event.target.getAttribute("data-index"); // Retrieve the index
+            myLibrary.splice(bookIndex, 1); // Remove book from the array
+            renderBooks(); // Re-render the library
+        });
+
         bookDiv.appendChild(title);
         bookDiv.appendChild(author);
         bookDiv.appendChild(pages);
         bookDiv.appendChild(read);
+        bookDiv.appendChild(removeButton);
+        bookDiv.appendChild(changeRead);
         bookList.appendChild(bookDiv);
     });
 }
+
